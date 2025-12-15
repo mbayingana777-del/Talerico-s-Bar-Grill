@@ -6,45 +6,6 @@
   <title>NOIR SOCIAL | Bar & Kitchen</title>
 
   <style>
-    /* ✅ Makes everything under "The Vibe" breathe */
-.vibeStack{
-  display: grid;
-  gap: 22px;
-}
-
-/* ✅ Make the featured food tiles look like real photos, not skinny strips */
-.photoGrid{
-  display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:18px;
-  margin-top:0; /* spacing handled by vibeStack */
-}
-
-.shot{
-  position:relative;
-  border-radius:16px;
-  overflow:hidden;
-  border:1px solid #242424;
-  background:#0f0f0f;
-  box-shadow:0 18px 60px rgba(0,0,0,.35);
-
-  /* IMPORTANT: prevents the “thin strip” look */
-  min-height: 170px;
-  aspect-ratio: 16 / 9;
-}
-
-.shot.span8{ min-height: 220px; }
-.shot.span6{ min-height: 190px; }
-.shot.span4{ min-height: 220px; aspect-ratio: 4 / 5; }
-
-/* Space the buttons a bit + prevent crowding */
-.vibeActions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top: 4px;
-}
-
     body{
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       margin:0;background:#0f0f0f;color:#f5f5f5;
@@ -87,35 +48,73 @@
     .kv div:last-child{border-bottom:none;padding-bottom:0;}
     .tiny{font-size:12px;opacity:.6;margin-top:8px;line-height:1.5;}
 
-    /* FOOD PHOTO GRID */
+    /* ✅ VIBE STACK (spacing) */
+    .vibeStack{
+      display:grid;
+      gap:22px;
+      margin-top:10px;
+    }
+
+    /* ✅ EVEN 2x2 FEATURED GRID UNDER THE VIBE */
     .photoGrid{
-      display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:20px;
+      margin:0;
     }
+
+    /* ✅ UNIFORM CARDS (no overlap, no weird spans) */
     .shot{
-      position:relative;border-radius:16px;overflow:hidden;
-      border:1px solid #242424;background:#0f0f0f;
-      box-shadow:0 18px 60px rgba(0,0,0,.35);
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      background:#0f0f0f;
+      border:1px solid #242424;
+      box-shadow:0 18px 50px rgba(0,0,0,.4);
+      height:220px;
+      display:flex;
+      align-items:flex-end;
     }
+
     .shot img{
-      width:100%;height:100%;object-fit:cover;display:block;
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
       filter:saturate(1.15) contrast(1.05);
       transform:scale(1.02);
     }
+
     .shot::after{
-      content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.55));
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.75));
       pointer-events:none;
     }
-    .shot .cap{
-      position:absolute;left:14px;bottom:12px;right:14px;
-      display:flex;justify-content:space-between;gap:10px;align-items:flex-end;
+
+    .cap{
+      position:relative;
+      width:100%;
+      padding:14px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-end;
     }
     .cap .name{font-weight:800;letter-spacing:-.01em;}
     .cap .sub{font-size:12px;opacity:.75;margin-top:3px;line-height:1.35;}
     .cap .price{font-weight:800;opacity:.98;white-space:nowrap;}
-    .span6{grid-column:span 6;}
-    .span4{grid-column:span 4;}
-    .span8{grid-column:span 8;}
+
+    /* Buttons under vibe */
+    .vibeActions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:4px;
+    }
 
     /* MENU SECTION */
     .menuWrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px;}
@@ -146,7 +145,8 @@
       h1{font-size:34px;}
     }
     @media (max-width: 720px){
-      .span8,.span6,.span4{grid-column:span 12;}
+      .photoGrid{grid-template-columns:1fr;}
+      .shot{height:240px;}
       .card{padding:26px;}
     }
   </style>
@@ -179,63 +179,67 @@
       <div class="grid">
         <div class="panel">
           <h2>The Vibe</h2>
-          <p>
-            Dark, sleek, and warm. Strong pours. Hot food. No waiting around.
-            This is where date nights and late-night cravings come to life.
-          </p>
 
-          <!-- FEATURED FOOD SHOTS -->
-          <div class="photoGrid">
-            <div class="shot span8">
-              <img src="images/steak.jpg" alt="Signature Steak" />
-              <div class="cap">
-                <div>
-                  <div class="name">Signature Steak</div>
-                  <div class="sub">Herb butter • crispy potatoes • charred lemon</div>
+          <div class="vibeStack">
+            <p>
+              Dark, sleek, and warm. Strong pours. Hot food. No waiting around.
+              This is where date nights and late-night cravings come to life.
+            </p>
+
+            <!-- ✅ FEATURED FOOD SHOTS (EVEN 2x2) -->
+            <div class="photoGrid">
+              <div class="shot">
+                <img src="images/steak.jpg" alt="Signature Steak" />
+                <div class="cap">
+                  <div>
+                    <div class="name">Signature Steak</div>
+                    <div class="sub">Herb butter • crispy potatoes • charred lemon</div>
+                  </div>
+                  <div class="price">$34</div>
                 </div>
-                <div class="price">$34</div>
+              </div>
+
+              <div class="shot">
+                <img src="images/martini.jpg" alt="Espresso Martini" />
+                <div class="cap">
+                  <div>
+                    <div class="name">Espresso Martini</div>
+                    <div class="sub">Cold brew • crema • smooth</div>
+                  </div>
+                  <div class="price">$15</div>
+                </div>
+              </div>
+
+              <div class="shot">
+                <img src="images/burger.jpg" alt="Smash Burger" />
+                <div class="cap">
+                  <div>
+                    <div class="name">Smash Burger</div>
+                    <div class="sub">Double patty • house sauce • fries</div>
+                  </div>
+                  <div class="price">$16</div>
+                </div>
+              </div>
+
+              <div class="shot">
+                <img src="images/wings.jpg" alt="Hot Honey Wings" />
+                <div class="cap">
+                  <div>
+                    <div class="name">Hot Honey Wings</div>
+                    <div class="sub">Crispy • sticky • addictive</div>
+                  </div>
+                  <div class="price">$14</div>
+                </div>
               </div>
             </div>
 
-            <div class="shot span4">
-              <img src="images/martini.jpg" alt="Espresso Martini" />
-              <div class="cap">
-                <div>
-                  <div class="name">Espresso Martini</div>
-                  <div class="sub">Cold brew • crema • smooth</div>
-                </div>
-                <div class="price">$15</div>
-              </div>
+            <div class="vibeActions">
+              <a class="btn btnPrimary" href="#menu">View Full Menu</a>
+              <a class="btn" href="#reserve">Book A Table</a>
             </div>
 
-            <div class="shot span6">
-              <img src="images/burger.jpg" alt="Smash Burger" />
-              <div class="cap">
-                <div>
-                  <div class="name">Smash Burger</div>
-                  <div class="sub">Double patty • house sauce • fries</div>
-                </div>
-                <div class="price">$16</div>
-              </div>
-            </div>
-
-            <div class="shot span6">
-              <img src="images/wings.jpg" alt="Hot Honey Wings" />
-              <div class="cap">
-                <div>
-                  <div class="name">Hot Honey Wings</div>
-                  <div class="sub">Crispy • sticky • addictive</div>
-                </div>
-                <div class="price">$14</div>
-              </div>
-            </div>
+            <div class="tiny">Tip: upload your real food photos into <b>/images</b> to make this pop.</div>
           </div>
-
-          <div class="ctaRow" style="margin-top:14px;">
-            <a class="btn btnPrimary" href="#menu">View Full Menu</a>
-            <a class="btn" href="#reserve">Book A Table</a>
-          </div>
-          <div class="tiny">Tip: upload your real food photos into <b>/images</b> to make this pop.</div>
         </div>
 
         <div class="panel">
@@ -478,3 +482,4 @@
   </script>
 </body>
 </html>
+
