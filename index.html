@@ -40,7 +40,7 @@
     .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;}
     .panel{
       border:1px solid #242424;background:#121212;border-radius:16px;padding:18px;
-      overflow:hidden; /* ✅ prevents any grid/content bleed */
+      overflow:hidden;
     }
     h2{font-size:20px;margin:0 0 10px;letter-spacing:-.01em;}
     p{margin:0;opacity:.85;line-height:1.6;}
@@ -49,19 +49,15 @@
     .kv div:last-child{border-bottom:none;padding-bottom:0;}
     .tiny{font-size:12px;opacity:.6;margin-top:8px;line-height:1.5;}
 
-    /* ✅ Specials spacing */
     .vibeStack{display:grid;gap:22px;margin-top:10px;}
     .vibeActions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;}
 
-    /* ✅ Featured 2x2 grid (no spans, no overflow) */
     .photoGrid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0, 1fr));
       gap:20px;
-      margin:0;
     }
     .shot{
-      min-width:0;
       width:100%;
       position:relative;
       border-radius:16px;
@@ -82,382 +78,115 @@
     .shot::after{
       content:"";position:absolute;inset:0;
       background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.75));
-      pointer-events:none;
     }
     .cap{
       position:relative;width:100%;
       padding:14px;
       display:flex;justify-content:space-between;gap:10px;align-items:flex-end;
     }
-    .cap .name{font-weight:800;letter-spacing:-.01em;}
-    .cap .sub{font-size:12px;opacity:.75;margin-top:3px;line-height:1.35;}
-    .cap .price{font-weight:800;opacity:.98;white-space:nowrap;}
+    .cap .name{font-weight:800;}
+    .cap .sub{font-size:12px;opacity:.75;margin-top:3px;}
+    .cap .price{font-weight:800;}
 
-    /* MENU SECTION */
     .menuWrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px;}
     .menuCol{display:grid;gap:12px;}
     .menuCard{
       display:grid;grid-template-columns:120px 1fr;gap:12px;
       border:1px solid #242424;background:#0f0f0f;border-radius:16px;overflow:hidden;
     }
-    .menuCard img{width:120px;height:120px;object-fit:cover;display:block;}
+    .menuCard img{width:120px;height:120px;object-fit:cover;}
     .menuCard .meta{padding:12px 12px 12px 0;}
-    .menuCard .row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;}
-    .menuCard .title{font-weight:800;letter-spacing:-.01em;}
-    .menuCard .desc{font-size:13px;opacity:.72;margin-top:6px;line-height:1.45;}
-    .menuCard .price{font-weight:800;opacity:.98;white-space:nowrap;}
+    .menuCard .row{display:flex;justify-content:space-between;}
+    .menuCard .title{font-weight:800;}
+    .menuCard .desc{font-size:13px;opacity:.72;margin-top:6px;}
+    .menuCard .price{font-weight:800;}
 
-    /* FORM */
     .form{display:grid;gap:12px;margin-top:10px;}
-    label{display:grid;gap:6px;font-size:13px;opacity:.85;}
+    label{display:grid;gap:6px;font-size:13px;}
     input,select,textarea{
       background:#0f0f0f;border:1px solid #2a2a2a;border-radius:10px;
       padding:10px 12px;color:#f5f5f5;font-size:14px;
     }
-    input:focus,select:focus,textarea:focus{outline:none;border-color:#555;}
 
     button.btnPrimary{
       border:none;background:#fff;color:#0f0f0f;
-      padding:12px 14px;border-radius:12px;font-weight:700;cursor:pointer;
+      padding:12px 14px;border-radius:12px;font-weight:700;
     }
-    button.btnPrimary:hover{opacity:.92;}
 
     @media (max-width: 920px){
       .grid{grid-template-columns:1fr;}
       .menuWrap{grid-template-columns:1fr;}
-      h1{font-size:34px;}
     }
     @media (max-width: 720px){
       .photoGrid{grid-template-columns:1fr;}
-      .shot{height:240px;}
-      .card{padding:26px;}
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="card">
+<div class="wrap">
+<div class="card">
 
-      <div class="top">
-        <div class="brand">
-          <h1>Talerico's Bar &amp; Grille</h1>
-          <p class="tagline">Modern bar &amp; kitchen. Late nights. Loud flavor. Clean energy.</p>
-          <div class="pillrow">
-            <div class="pill">Kitchen Open Late</div>
-            <div class="pill">Craft Cocktails</div>
-            <div class="pill">Weekend DJs</div>
-          </div>
-        </div>
-
-        <div class="ctaRow">
-          <a class="btn btnPrimary" href="#menu">See The Menu</a>
-          <a class="btn" href="#reserve">Reserve / Private Party</a>
-          <a class="btn" href="#events">Events</a>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="grid">
-        <div class="panel">
-          <h2>The Specials</h2>
-
-          <div class="vibeStack">
-            <p>
-              Cold drinks, hot food, and a spot that feels right any night of the week.
-            </p>
-
-            <!-- ✅ FEATURED FOOD SHOTS (EVEN 2x2, NO OVERLAP) -->
-            <div class="photoGrid">
-              <div class="shot">
-                <img src="images/steak.jpg" alt="Signature Steak" />
-                <div class="cap">
-                  <div>
-                    <div class="name">Signature Steak</div>
-                    <div class="sub">Herb butter • crispy potatoes • charred lemon</div>
-                  </div>
-                  <div class="price">$34</div>
-                </div>
-              </div>
-
-              <div class="shot">
-                <img src="images/martini.jpg" alt="Espresso Martini" />
-                <div class="cap">
-                  <div>
-                    <div class="name">Espresso Martini</div>
-                    <div class="sub">Cold brew • crema • smooth</div>
-                  </div>
-                  <div class="price">$15</div>
-                </div>
-              </div>
-
-              <div class="shot">
-                <img src="images/burger.jpg" alt="Smash Burger" />
-                <div class="cap">
-                  <div>
-                    <div class="name">Smash Burger</div>
-                    <div class="sub">Double patty • house sauce • fries</div>
-                  </div>
-                  <div class="price">$16</div>
-                </div>
-              </div>
-
-              <div class="shot">
-                <img src="images/wings.jpg" alt="Hot Honey Wings" />
-                <div class="cap">
-                  <div>
-                    <div class="name">Hot Honey Wings</div>
-                    <div class="sub">Crispy • sticky • addictive</div>
-                  </div>
-                  <div class="price">$14</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="vibeActions">
-              <a class="btn btnPrimary" href="#menu">View Full Menu</a>
-              <a class="btn" href="#reserve">Book A Table</a>
-            </div>
-
-            <div class="tiny">Tip: upload your real food photos into <b>/images</b> to make this pop.</div>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h2>Hours</h2>
-          <div class="kv">
-            <div><span>Mon–Thu</span><span>4pm – 12am</span></div>
-            <div><span>Friday</span><span>4pm – 2am</span></div>
-            <div><span>Saturday</span><span>12pm – 2am</span></div>
-            <div><span>Sunday</span><span>12pm – 10pm</span></div>
-          </div>
-
-          <div class="divider"></div>
-
-          <h2>Location</h2>
-          <div class="kv">
-            <div><span>Address</span><span>123 Main St, Your City</span></div>
-            <div><span>Phone</span><span>(724) 555-1234</span></div>
-          </div>
-
-          <div class="ctaRow" style="margin-top:12px;">
-            <a class="btn" href="tel:+17245551234">Call</a>
-            <a class="btn" target="_blank" rel="noreferrer" href="https://maps.google.com/?q=123%20Main%20St%20Your%20City">Directions</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div id="menu" class="panel">
-        <h2>Menu</h2>
-        <p class="tiny">Concept menu — swap items/prices and upload your real photos in /images.</p>
-
-        <div class="menuWrap">
-          <div class="menuCol">
-            <h2>Kitchen</h2>
-
-            <div class="menuCard">
-              <img src="images/burger.jpg" alt="Smash Burger" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Smash Burger</div>
-                  <div class="price">$16</div>
-                </div>
-                <div class="desc">Double patty, caramelized onions, house sauce, fries.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/wings.jpg" alt="Hot Honey Wings" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Hot Honey Wings</div>
-                  <div class="price">$14</div>
-                </div>
-                <div class="desc">Crispy wings, hot honey glaze, ranch.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/nachos.jpg" alt="Loaded Nachos" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Loaded Nachos</div>
-                  <div class="price">$13</div>
-                </div>
-                <div class="desc">Melted cheese, pico, jalapeños, crema, choice of protein.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/pizza.jpg" alt="Pepperoni Pizza" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Pepperoni Pizza</div>
-                  <div class="price">$18</div>
-                </div>
-                <div class="desc">Crispy crust, spicy pepperoni, mozzarella, chili honey.</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="menuCol">
-            <h2>Bar</h2>
-
-            <div class="menuCard">
-              <img src="images/oldfashioned.jpg" alt="Old Fashioned" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">House Old Fashioned</div>
-                  <div class="price">$14</div>
-                </div>
-                <div class="desc">Bourbon, smoked sugar, orange, bitters.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/martini.jpg" alt="Espresso Martini" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Espresso Martini</div>
-                  <div class="price">$15</div>
-                </div>
-                <div class="desc">Vodka, espresso, coffee liqueur, crema.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/tacos.jpg" alt="Spicy Margarita" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Spicy Margarita</div>
-                  <div class="price">$13</div>
-                </div>
-                <div class="desc">Tequila, lime, jalapeño, tajín rim.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/steak.jpg" alt="Premium Pour" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Premium Pour</div>
-                  <div class="price">$18+</div>
-                </div>
-                <div class="desc">Ask for today’s reserve selection and featured pours.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div id="events" class="panel">
-        <h2>Events</h2>
-        <div class="kv">
-          <div><span>Friday</span><span>DJ Night • 10pm – Close</span></div>
-          <div><span>Saturday</span><span>Brunch + Day Party • 12pm – 4pm</span></div>
-          <div><span>Sunday</span><span>Chill Set • 6pm – 10pm</span></div>
-        </div>
-        <p class="tiny">Want to host a birthday or private event? Request below.</p>
-      </div>
-
-      <div class="divider"></div>
-
-      <div id="reserve" class="panel">
-        <h2>Reservations / Private Parties</h2>
-        <p class="tiny">Submit your details — then you’ll be redirected to schedule a quick call.</p>
-
-        <form id="leadForm" class="form">
-          <label>
-            Name
-            <input type="text" name="name" required />
-          </label>
-
-          <label>
-            Email
-            <input type="email" name="email" required />
-          </label>
-
-          <label>
-            Phone
-            <input type="tel" name="phone" required placeholder="(724) 555-1234" />
-          </label>
-
-          <label>
-            Request Type
-            <select name="interest" required>
-              <option value="">Select one</option>
-              <option>Table Reservation</option>
-              <option>Birthday / Celebration</option>
-              <option>Private Event</option>
-              <option>Corporate / Team</option>
-            </select>
-          </label>
-
-          <label>
-            Details
-            <textarea name="message" rows="4" placeholder="Date/time preference, party size, occasion, any notes"></textarea>
-          </label>
-
-          <button id="submitBtn" type="submit" class="btnPrimary">Continue to Scheduling</button>
-          <div class="tiny">After submitting, you’ll be taken to the scheduling page.</div>
-        </form>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="panel">
-        <p class="tiny">© <span id="year"></span> Talerico's Bar &amp; Grille • Concept Site</p>
-      </div>
-
+<div class="top">
+  <div class="brand">
+    <h1>Talerico's Bar &amp; Grille</h1>
+    <p class="tagline">Modern bar &amp; kitchen. Late nights. Loud flavor. Good times.</p>
+    <div class="pillrow">
+      <div class="pill">Kitchen Open Late</div>
+      <div class="pill">Craft Cocktails</div>
+      <div class="pill">Weekend DJs</div>
     </div>
   </div>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+  <div class="ctaRow">
+    <a class="btn btnPrimary" href="#menu">See The Menu</a>
+    <a class="btn" href="#reserve">Reserve / Private Party</a>
+    <a class="btn" href="#events">Events</a>
+  </div>
+</div>
 
-    const CALENDLY_URL = "https://calendly.com/mbayingana777/consultation";
+<div class="divider"></div>
 
-    const GOOGLE_FORM_ACTION =
-      "https://docs.google.com/forms/d/e/1FAIpQLSfVHuib_V9ezKdQz8PHMZVPRxwo5SrK4R9gwsvnoYkJoxRIlg/formResponse";
+<div class="grid">
+<div class="panel">
+  <h2>The Specials</h2>
 
-    const ENTRY = {
-      name: "entry.27076484",
-      email: "entry.1770136219",
-      phone: "entry.337117981",
-      interest: "entry.932432933",
-      message: "entry.684929870"
-    };
+  <div class="vibeStack">
+    <p>Cold drinks, hot food, and a spot that feels right any night of the week.</p>
 
-    const form = document.getElementById("leadForm");
-    const btn = document.getElementById("submitBtn");
+    <div class="photoGrid">
+      <div class="shot">
+        <img src="images/steak.jpg">
+        <div class="cap"><div><div class="name">Signature Steak</div><div class="sub">Herb butter • crispy potatoes</div></div><div class="price">$34</div></div>
+      </div>
+      <div class="shot">
+        <img src="images/martini.jpg">
+        <div class="cap"><div><div class="name">Espresso Martini</div><div class="sub">Cold brew • crema</div></div><div class="price">$15</div></div>
+      </div>
+      <div class="shot">
+        <img src="images/burger.jpg">
+        <div class="cap"><div><div class="name">Smash Burger</div><div class="sub">House sauce • fries</div></div><div class="price">$16</div></div>
+      </div>
+      <div class="shot">
+        <img src="images/wings.jpg">
+        <div class="cap"><div><div class="name">Hot Honey Wings</div><div class="sub">Crispy • sticky</div></div><div class="price">$14</div></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+<div class="panel">
+  <h2>Hours</h2>
+  <div class="kv">
+    <div><span>Mon–Thu</span><span>4pm – 12am</span></div>
+    <div><span>Friday</span><span>4pm – 2am</span></div>
+    <div><span>Saturday</span><span>12pm – 2am</span></div>
+    <div><span>Sunday</span><span>12pm – 10pm</span></div>
+  </div>
+</div>
+</div>
 
-      btn.disabled = true;
-      btn.textContent = "Submitting...";
-
-      const data = new URLSearchParams();
-      data.append(ENTRY.name, form.name.value.trim());
-      data.append(ENTRY.email, form.email.value.trim());
-      data.append(ENTRY.phone, form.phone.value.trim());
-      data.append(ENTRY.interest, form.interest.value);
-      data.append(ENTRY.message, (form.message.value || "").trim());
-
-      fetch(GOOGLE_FORM_ACTION, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: data.toString()
-      }).finally(() => {
-        window.location.href = CALENDLY_URL;
-      });
-    });
-  </script>
+</div>
+</div>
 </body>
 </html>
