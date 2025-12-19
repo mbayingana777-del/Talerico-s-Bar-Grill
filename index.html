@@ -4,56 +4,132 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Talerico's Bar & Grille</title>
+  <meta name="description" content="Talerico’s Bar & Grille — drinks, late-night kitchen, wings, burgers, pizza, fries, and comfort-food classics." />
 
   <style>
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      margin:0;background:#0f0f0f;color:#f5f5f5;
-    }
-    .wrap{min-height:100vh;display:flex;justify-content:center;padding:28px 18px;}
-    .card{
-      width:100%;max-width:980px;background:#161616;border-radius:18px;
-      padding:34px;box-shadow:0 20px 60px rgba(0,0,0,.5);
+    :root{
+      --bg:#0f0f0f;
+      --panel:#161616;
+      --panel2:#121212;
+      --line:#242424;
+      --line2:#2a2a2a;
+      --text:#f5f5f5;
+      --muted:rgba(245,245,245,.78);
+      --muted2:rgba(245,245,245,.62);
+      --accent:#ffffff;
+      --radius:18px;
+      --radius2:16px;
+      --shadow:0 20px 60px rgba(0,0,0,.5);
+      --max:980px;
     }
 
-    .top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      margin:0;background:var(--bg);color:var(--text);
+    }
+
+    a{color:inherit;text-decoration:none}
+    b{font-weight:800}
+
+    .wrap{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      padding:28px 18px;
+    }
+
+    .card{
+      width:100%;
+      max-width:var(--max);
+      background:var(--panel);
+      border-radius:var(--radius);
+      padding:34px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.06);
+    }
+
+    .top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
     .brand{display:grid;gap:8px;max-width:620px;}
     h1{font-size:40px;margin:0;letter-spacing:-.02em;}
     .tagline{margin:0;opacity:.78;font-size:16px;line-height:1.5;}
+
     .pillrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;}
     .pill{
-      border:1px solid #2a2a2a;background:#0f0f0f;color:#f5f5f5;border-radius:999px;
-      padding:8px 12px;font-size:13px;opacity:.92;
+      border:1px solid var(--line2);
+      background:var(--bg);
+      color:var(--text);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      opacity:.92;
     }
 
     .ctaRow{display:flex;gap:10px;flex-wrap:wrap;}
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:12px 14px;border-radius:12px;text-decoration:none;font-weight:600;
-      cursor:pointer;border:1px solid #2a2a2a;background:#0f0f0f;color:#f5f5f5;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:12px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:700;
+      cursor:pointer;
+      border:1px solid var(--line2);
+      background:var(--bg);
+      color:var(--text);
+      transition:transform .12s ease, opacity .12s ease, border-color .12s ease;
+      user-select:none;
     }
-    .btnPrimary{border:none;background:#fff;color:#0f0f0f;}
-    .btn:hover{opacity:.92;}
+    .btn:hover{opacity:.92;transform:translateY(-1px);border-color:#3a3a3a;}
+    .btnPrimary{
+      border:none;
+      background:var(--accent);
+      color:var(--bg);
+    }
+    .btnPrimary:hover{opacity:.93;transform:translateY(-1px);}
 
-    .divider{height:1px;background:#2a2a2a;margin:22px 0;}
+    .divider{
+      height:1px;background:var(--line2);
+      margin:22px 0;
+    }
 
-    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;}
+    .grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
+    }
+
     .panel{
-      border:1px solid #242424;background:#121212;border-radius:16px;padding:18px;
-      overflow:hidden; /* prevents bleed */
+      border:1px solid var(--line);
+      background:var(--panel2);
+      border-radius:var(--radius2);
+      padding:18px;
+      overflow:hidden;
     }
+
     h2{font-size:20px;margin:0 0 10px;letter-spacing:-.01em;}
     p{margin:0;opacity:.85;line-height:1.6;}
-    .kv{display:grid;gap:10px;margin-top:10px;font-size:14px;opacity:.9;}
-    .kv div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #1f1f1f;padding-bottom:8px;}
+    .tiny{font-size:12px;opacity:.62;margin-top:8px;line-height:1.5;}
+
+    .kv{display:grid;gap:10px;margin-top:10px;font-size:14px;opacity:.92;}
+    .kv div{
+      display:flex;justify-content:space-between;gap:12px;
+      border-bottom:1px solid #1f1f1f;padding-bottom:8px;
+    }
     .kv div:last-child{border-bottom:none;padding-bottom:0;}
-    .tiny{font-size:12px;opacity:.6;margin-top:8px;line-height:1.5;}
 
-    /* Specials spacing */
-    .vibeStack{display:grid;gap:22px;margin-top:10px;}
-    .vibeActions{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;}
-
-    /* Featured 2x2 grid */
+    /* Featured 2x2 grid (Top Sellers) */
     .photoGrid{
       display:grid;
       grid-template-columns:repeat(2, minmax(0, 1fr));
@@ -66,9 +142,9 @@
       position:relative;
       border-radius:16px;
       overflow:hidden;
-      background:#0f0f0f;
-      border:1px solid #242424;
-      box-shadow:0 18px 50px rgba(0,0,0,.4);
+      background:var(--bg);
+      border:1px solid var(--line);
+      box-shadow:0 18px 50px rgba(0,0,0,.35);
       height:220px;
       display:flex;
       align-items:flex-end;
@@ -76,12 +152,12 @@
     .shot img{
       position:absolute;inset:0;width:100%;height:100%;
       object-fit:cover;display:block;
-      filter:saturate(1.15) contrast(1.05);
+      filter:saturate(1.12) contrast(1.06);
       transform:scale(1.02);
     }
     .shot::after{
       content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.75));
+      background:linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.78));
       pointer-events:none;
     }
     .cap{
@@ -89,43 +165,174 @@
       padding:14px;
       display:flex;justify-content:space-between;gap:10px;align-items:flex-end;
     }
-    .cap .name{font-weight:800;letter-spacing:-.01em;}
-    .cap .sub{font-size:12px;opacity:.75;margin-top:3px;line-height:1.35;}
-    .cap .price{font-weight:800;opacity:.98;white-space:nowrap;}
+    .cap .name{font-weight:900;letter-spacing:-.01em;}
+    .cap .sub{font-size:12px;opacity:.78;margin-top:3px;line-height:1.35;}
+    .cap .price{font-weight:900;opacity:.98;white-space:nowrap;}
 
-    /* MENU SECTION */
-    .menuWrap{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px;}
-    .menuCol{display:grid;gap:12px;}
-    .menuCard{
-      display:grid;grid-template-columns:120px 1fr;gap:12px;
-      border:1px solid #242424;background:#0f0f0f;border-radius:16px;overflow:hidden;
+    /* NEW: MENU HEADER STRIP */
+    .menuHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
     }
-    .menuCard img{width:120px;height:120px;object-fit:cover;display:block;}
-    .menuCard .meta{padding:12px 12px 12px 0;}
-    .menuCard .row{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;}
-    .menuCard .title{font-weight:800;letter-spacing:-.01em;}
-    .menuCard .desc{font-size:13px;opacity:.72;margin-top:6px;line-height:1.45;}
-    .menuCard .price{font-weight:800;opacity:.98;white-space:nowrap;}
+    .menuHead .left{display:grid;gap:6px;}
+    .menuHead .title{font-size:22px;font-weight:900;letter-spacing:-.01em;margin:0;}
+    .menuHead .sub{font-size:13px;color:var(--muted2);margin:0;max-width:720px;line-height:1.45;}
+    .menuHead .right{display:flex;gap:10px;flex-wrap:wrap;}
+
+    /* NEW: MENU TOP PHOTO ROW (room for pictures near top sellers) */
+    .menuPhotoRow{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin:14px 0 18px;
+    }
+    .menuPhoto{
+      position:relative;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--bg);
+      height:200px;
+    }
+    .menuPhoto img{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;display:block;
+      filter:saturate(1.12) contrast(1.05);
+      transform:scale(1.02);
+    }
+    .menuPhoto::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.10),rgba(0,0,0,.76));
+    }
+    .menuPhoto .label{
+      position:absolute;left:14px;bottom:14px;
+      font-weight:900;letter-spacing:-.01em;
+      text-shadow:0 14px 40px rgba(0,0,0,.6);
+    }
+    .menuPhoto .label small{
+      display:block;
+      font-weight:700;
+      opacity:.78;
+      font-size:12px;
+      margin-top:4px;
+    }
+
+    /* NEW: ACCORDIONS */
+    details{
+      border:1px solid var(--line);
+      background:rgba(15,15,15,.35);
+      border-radius:16px;
+      overflow:hidden;
+    }
+    details + details{margin-top:12px;}
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      user-select:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    .sumLeft{display:flex;flex-direction:column;gap:2px;}
+    .sumTitle{font-weight:900;letter-spacing:-.01em;}
+    .sumHint{font-size:12px;color:var(--muted2);line-height:1.35;}
+    .chev{
+      width:34px;height:34px;border-radius:12px;
+      display:grid;place-items:center;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.25);
+      transition:transform .15s ease;
+      flex:0 0 auto;
+    }
+    details[open] .chev{transform:rotate(180deg);}
+    .chev svg{width:18px;height:18px;opacity:.9}
+
+    .menuBody{padding:0 14px 14px;}
+
+    /* NEW: MENU LIST GRID */
+    .menuGrid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:12px;
+      margin-top:10px;
+    }
+    .menuItem{
+      border:1px solid rgba(255,255,255,.06);
+      background:rgba(0,0,0,.22);
+      border-radius:14px;
+      padding:12px;
+    }
+    .menuItem .row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .menuItem .name{
+      font-weight:900;
+      letter-spacing:-.01em;
+    }
+    .menuItem .price{
+      font-weight:900;
+      opacity:.95;
+      white-space:nowrap;
+      color:rgba(255,255,255,.9);
+    }
+    .menuItem .desc{
+      margin-top:6px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.45;
+    }
+
+    /* small list (like wing flavors) */
+    .chipList{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:10px;
+    }
+    .chip{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.25);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:rgba(255,255,255,.86);
+    }
 
     /* FORM */
     .form{display:grid;gap:12px;margin-top:10px;}
-    label{display:grid;gap:6px;font-size:13px;opacity:.85;}
+    label{display:grid;gap:6px;font-size:13px;opacity:.88;}
     input,select,textarea{
-      background:#0f0f0f;border:1px solid #2a2a2a;border-radius:10px;
-      padding:10px 12px;color:#f5f5f5;font-size:14px;
+      background:var(--bg);
+      border:1px solid var(--line2);
+      border-radius:10px;
+      padding:10px 12px;
+      color:var(--text);
+      font-size:14px;
     }
     input:focus,select:focus,textarea:focus{outline:none;border-color:#555;}
 
     button.btnPrimary{
-      border:none;background:#fff;color:#0f0f0f;
-      padding:12px 14px;border-radius:12px;font-weight:700;cursor:pointer;
+      border:none;background:var(--accent);color:var(--bg);
+      padding:12px 14px;border-radius:12px;font-weight:900;cursor:pointer;
     }
     button.btnPrimary:hover{opacity:.92;}
 
     @media (max-width: 920px){
       .grid{grid-template-columns:1fr;}
-      .menuWrap{grid-template-columns:1fr;}
       h1{font-size:34px;}
+      .menuPhotoRow{grid-template-columns:1fr;}
+      .menuGrid{grid-template-columns:1fr;}
     }
     @media (max-width: 720px){
       .photoGrid{grid-template-columns:1fr;}
@@ -142,10 +349,10 @@
       <div class="top">
         <div class="brand">
           <h1>Talerico's Bar &amp; Grille</h1>
-          <p class="tagline">Modern bar &amp; kitchen. Late nights. Loud flavor. Good times.</p>
+          <p class="tagline">Classic comfort food, cold drinks, and a neighborhood vibe that hits every time.</p>
           <div class="pillrow">
             <div class="pill">Kitchen Open Late</div>
-            <div class="pill">Craft Cocktails</div>
+            <div class="pill">Wings • Burgers • Pizza</div>
             <div class="pill">In-House Casino</div>
           </div>
         </div>
@@ -161,66 +368,66 @@
 
       <div class="grid">
         <div class="panel">
-          <h2>The Specials</h2>
+          <h2>Top Sellers</h2>
+          <p>Fan-favorites you’ll see on tables every night. Swap in your real photos in <b>/images</b>.</p>
 
-          <div class="vibeStack">
-            <p>
-              Cold drinks, hot food, and a spot that feels right any night of the week.
-            </p>
+          <div style="height:12px"></div>
 
-            <div class="photoGrid">
-              <div class="shot">
-                <img src="images/steak.jpg" alt="Signature Steak" />
-                <div class="cap">
-                  <div>
-                    <div class="name">Signature Steak</div>
-                    <div class="sub">Herb butter • crispy potatoes • charred lemon</div>
-                  </div>
-                  <div class="price">$34</div>
+          <div class="photoGrid">
+            <div class="shot">
+              <!-- Replace with a real photo later -->
+              <img src="images/burger.jpg" alt="Signature Burger" />
+              <div class="cap">
+                <div>
+                  <div class="name">House Burger</div>
+                  <div class="sub">Juicy, stacked, and built for late-night cravings</div>
                 </div>
-              </div>
-
-              <div class="shot">
-                <img src="images/martini.jpg" alt="Espresso Martini" />
-                <div class="cap">
-                  <div>
-                    <div class="name">Espresso Martini</div>
-                    <div class="sub">Cold brew • crema • smooth</div>
-                  </div>
-                  <div class="price">$15</div>
-                </div>
-              </div>
-
-              <div class="shot">
-                <img src="images/burger.jpg" alt="Smash Burger" />
-                <div class="cap">
-                  <div>
-                    <div class="name">Smash Burger</div>
-                    <div class="sub">Double patty • house sauce • fries</div>
-                  </div>
-                  <div class="price">$16</div>
-                </div>
-              </div>
-
-              <div class="shot">
-                <img src="images/wings.jpg" alt="Hot Honey Wings" />
-                <div class="cap">
-                  <div>
-                    <div class="name">Hot Honey Wings</div>
-                    <div class="sub">Crispy • sticky • addictive</div>
-                  </div>
-                  <div class="price">$14</div>
-                </div>
+                <div class="price">★</div>
               </div>
             </div>
 
-            <div class="vibeActions">
-              <a class="btn btnPrimary" href="#menu">View Full Menu</a>
-              <a class="btn" href="#reserve">Book A Table</a>
+            <div class="shot">
+              <img src="images/wings.jpg" alt="Wings" />
+              <div class="cap">
+                <div>
+                  <div class="name">Wings Any Flavor</div>
+                  <div class="sub">Crispy • saucy • pick your heat</div>
+                </div>
+                <div class="price">★</div>
+              </div>
             </div>
 
-            <div class="tiny">Tip: upload your real food photos into <b>/images</b> to make this pop.</div>
+            <div class="shot">
+              <img src="images/pizza.jpg" alt="Pizza" />
+              <div class="cap">
+                <div>
+                  <div class="name">Pizza Night</div>
+                  <div class="sub">Classic pies and loaded specialty picks</div>
+                </div>
+                <div class="price">★</div>
+              </div>
+            </div>
+
+            <div class="shot">
+              <img src="images/nachos.jpg" alt="Loaded Fries" />
+              <div class="cap">
+                <div>
+                  <div class="name">Loaded Fries</div>
+                  <div class="sub">From chili-cheese to ranch-bacon heat</div>
+                </div>
+                <div class="price">★</div>
+              </div>
+            </div>
           </div>
+
+          <div style="height:14px"></div>
+
+          <div class="ctaRow">
+            <a class="btn btnPrimary" href="#menu">View Full Menu</a>
+            <a class="btn" href="#reserve">Book A Table</a>
+          </div>
+
+          <div class="tiny">Tip: if you don’t have these image files yet, create them later — the menu still works perfectly.</div>
         </div>
 
         <div class="panel">
@@ -236,121 +443,412 @@
 
           <h2>Location</h2>
           <div class="kv">
-            <div><span>Address</span><span>123 Main St, Your City</span></div>
-            <div><span>Phone</span><span>(724) 555-1234</span></div>
+            <div><span>Address</span><span>2300 Duss Ave, Ambridge, PA</span></div>
+            <div><span>Phone</span><span>(724) 266-6322</span></div>
           </div>
 
           <div class="ctaRow" style="margin-top:12px;">
-            <a class="btn" href="tel:+17245551234">Call</a>
+            <a class="btn" href="tel:+17242666322">Call</a>
             <a class="btn" target="_blank" rel="noreferrer"
-               href="https://maps.google.com/?q=123%20Main%20St%20Your%20City">Directions</a>
+               href="https://maps.google.com/?q=2300%20Duss%20Ave%20Ambridge%20PA">Directions</a>
           </div>
+
+          <div class="tiny">If you want, we can add Google Maps embed + “Order Online” button later.</div>
         </div>
       </div>
 
       <div class="divider"></div>
 
+      <!-- FULL MENU -->
       <div id="menu" class="panel">
-        <h2>Menu</h2>
-        <p class="tiny">Concept menu — swap items/prices and upload your real photos in /images.</p>
-
-        <div class="menuWrap">
-          <div class="menuCol">
-            <h2>Kitchen</h2>
-
-            <div class="menuCard">
-              <img src="images/burger.jpg" alt="Smash Burger" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Smash Burger</div>
-                  <div class="price">$16</div>
-                </div>
-                <div class="desc">Double patty, caramelized onions, house sauce, fries.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/wings.jpg" alt="Hot Honey Wings" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Hot Honey Wings</div>
-                  <div class="price">$14</div>
-                </div>
-                <div class="desc">Crispy wings, hot honey glaze, ranch.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/nachos.jpg" alt="Loaded Nachos" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Loaded Nachos</div>
-                  <div class="price">$13</div>
-                </div>
-                <div class="desc">Melted cheese, pico, jalapeños, crema, choice of protein.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/pizza.jpg" alt="Pepperoni Pizza" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Pepperoni Pizza</div>
-                  <div class="price">$18</div>
-                </div>
-                <div class="desc">Crispy crust, spicy pepperoni, mozzarella, chili honey.</div>
-              </div>
-            </div>
+        <div class="menuHead">
+          <div class="left">
+            <div class="title">Full Menu</div>
+            <p class="sub">Easy to scan, clean on mobile, and built to make people hungry. Photos up top can be swapped with real shots anytime.</p>
           </div>
-
-          <div class="menuCol">
-            <h2>Bar</h2>
-
-            <div class="menuCard">
-              <img src="images/oldfashioned.jpg" alt="Old Fashioned" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">House Old Fashioned</div>
-                  <div class="price">$14</div>
-                </div>
-                <div class="desc">Bourbon, smoked sugar, orange, bitters.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/martini.jpg" alt="Espresso Martini" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Espresso Martini</div>
-                  <div class="price">$15</div>
-                </div>
-                <div class="desc">Vodka, espresso, coffee liqueur, crema.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/tacos.jpg" alt="Spicy Margarita" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Spicy Margarita</div>
-                  <div class="price">$13</div>
-                </div>
-                <div class="desc">Tequila, lime, jalapeño, tajín rim.</div>
-              </div>
-            </div>
-
-            <div class="menuCard">
-              <img src="images/steak.jpg" alt="Premium Pour" />
-              <div class="meta">
-                <div class="row">
-                  <div class="title">Premium Pour</div>
-                  <div class="price">$18+</div>
-                </div>
-                <div class="desc">Ask for today’s reserve selection and featured pours.</div>
-              </div>
-            </div>
+          <div class="right">
+            <a class="btn btnPrimary" href="#reserve">Reserve</a>
+            <a class="btn" href="#events">Events</a>
           </div>
         </div>
+
+        <!-- Room for pictures near top sellers -->
+        <div class="menuPhotoRow">
+          <div class="menuPhoto">
+            <img src="images/burger.jpg" alt="Burger feature photo" />
+            <div class="label">Signature Burgers <small>Swap image: /images/burger.jpg</small></div>
+          </div>
+          <div class="menuPhoto">
+            <img src="images/wings.jpg" alt="Wings feature photo" />
+            <div class="label">Wings &amp; Fries <small>Swap image: /images/wings.jpg</small></div>
+          </div>
+        </div>
+
+        <div class="tiny">Prices shown are optional — add them when you’re ready. Right now this is focused on clarity + appetite.</div>
+
+        <div style="height:12px"></div>
+
+        <!-- APPETIZERS -->
+        <details open>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Appetizers</div>
+              <div class="sumHint">Perfect starters for the table — crispy, cheesy, and built for drinks.</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+            <div class="menuGrid">
+              <div class="menuItem"><div class="row"><div class="name">Jalapeño Poppers</div><div class="price"></div></div><div class="desc">Crispy bite with a warm kick — great with a cold beer.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Potato Skins</div><div class="price"></div></div><div class="desc">Loaded, cheesy, and made for sharing.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Taco Skins</div><div class="price"></div></div><div class="desc">Crunchy skins with taco-style flavor that hits fast.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Buffalo Chicken Skins</div><div class="price"></div></div><div class="desc">Bold buffalo bite on a classic favorite.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Buffalo Chicken Nachos</div><div class="price"></div></div><div class="desc">Big, messy, and worth it — buffalo heat + cheesy comfort.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Shrimp &amp; Fries Basket</div><div class="price"></div></div><div class="desc">Crispy shrimp with fries — the easy “order this” move.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chicken Fingers &amp; Fries</div><div class="price"></div></div><div class="desc">Golden, crunchy, and always a safe bet.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Buffalo Chicken Fingers &amp; Fries</div><div class="price"></div></div><div class="desc">Classic fingers with buffalo attitude.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Nacho Supreme</div><div class="price"></div></div><div class="desc">A fully-loaded nacho pile built for the whole table.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Nachos with Cheese</div><div class="price"></div></div><div class="desc">Simple, cheesy, and perfect for snacking with drinks.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">3 Tacos</div><div class="price"></div></div><div class="desc">Quick, flavorful, and easy to crush.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Jumbo Fried Pretzel (w/ Cheese)</div><div class="price"></div></div><div class="desc">Big pretzel energy — warm, salty, and dip-ready.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fried Cinnamon Pretzel</div><div class="price"></div></div><div class="desc">Sweet finish with a warm cinnamon bite.</div></div>
+
+              <div class="menuItem"><div class="row"><div class="name">Provolone Wedges</div><div class="price"></div></div><div class="desc">Crunchy outside, melty inside — serious comfort.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fried Zucchini</div><div class="price"></div></div><div class="desc">Light, crispy, and addictive with a dip.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fried Cauliflower</div><div class="price"></div></div><div class="desc">Crispy bites that disappear fast.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fried Mushrooms</div><div class="price"></div></div><div class="desc">Savory crunch with a rich finish.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fried Pickles</div><div class="price"></div></div><div class="desc">Tangy, crunchy, and perfect with ranch.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fried Green Beans</div><div class="price"></div></div><div class="desc">Crispy snack with a clean bite.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Pepperoni Cheese Bites</div><div class="price"></div></div><div class="desc">Cheesy, pepperoni-packed, and snackable.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Hot Pepper Balls</div><div class="price"></div></div><div class="desc">A little heat, a lot of flavor.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Broccoli Cheese Puffs</div><div class="price"></div></div><div class="desc">Warm, cheesy bites with a comfort-food vibe.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Mini Tacos</div><div class="price"></div></div><div class="desc">Crispy mini tacos — perfect while you sip.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Corn Dog Bites</div><div class="price"></div></div><div class="desc">Sweet crunch outside, savory inside — nostalgia in a basket.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Homemade Chips</div><div class="price"></div></div><div class="desc">House-style crunch — clean and snackable.</div></div>
+            </div>
+          </div>
+        </details>
+
+        <!-- SOUPS & SIDES -->
+        <details>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Soups &amp; Sides</div>
+              <div class="sumHint">Comfort classics that pair with anything on the menu.</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+            <div class="menuGrid">
+              <div class="menuItem"><div class="row"><div class="name">Soup of the Day</div><div class="price"></div></div><div class="desc">Ask what’s hot today — made for a cozy start.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chili</div><div class="price"></div></div><div class="desc">Rich, hearty, and perfect when you want something filling.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Clam Chowder</div><div class="price"></div></div><div class="desc">Creamy comfort with a classic chowder finish.</div></div>
+
+              <div class="menuItem"><div class="row"><div class="name">Onion Rings</div><div class="price"></div></div><div class="desc">Golden crunch with that sweet onion bite.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Mashed Potatoes</div><div class="price"></div></div><div class="desc">Smooth, comforting, and made for gravy.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Coleslaw</div><div class="price"></div></div><div class="desc">Cool, crisp, and the perfect side for fried favorites.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Vegetable</div><div class="price"></div></div><div class="desc">A simple, classic side to round out the plate.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Applesauce</div><div class="price"></div></div><div class="desc">A sweet, clean side — old school in the best way.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Cottage Cheese</div><div class="price"></div></div><div class="desc">Light, cool, and simple.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Bread Sticks</div><div class="price"></div></div><div class="desc">Warm, soft, and perfect with a meal.</div></div>
+            </div>
+
+            <div class="tiny" style="margin-top:10px;">
+              <b>Dressings:</b> Ranch • Bleu Cheese • Honey Mustard • Homemade Italian • Lite Italian • Golden Italian • Creamy Italian • Sweet &amp; Sour • French • Thousand Island<br />
+              <b>Extra Dressing:</b> SM $0.75 • LG $1.00
+            </div>
+          </div>
+        </details>
+
+        <!-- FRIES -->
+        <details>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Fries</div>
+              <div class="sumHint">From classic baskets to fully-loaded specialty builds.</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+
+            <div class="tiny"><b>Specialty Fries</b></div>
+            <div class="menuGrid" style="margin-top:8px;">
+              <div class="menuItem"><div class="row"><div class="name">Chili Cheese Fries</div><div class="price"></div></div><div class="desc">Fries topped with famous chili and nacho cheese.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Taco Fries</div><div class="price"></div></div><div class="desc">Waffle fries with taco-seasoned meat and Mexican cheese.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Roast Beef &amp; Cheddar Fries</div><div class="price"></div></div><div class="desc">Shredded roast beef, rich brown gravy, and melted cheddar.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Southwestern Fries</div><div class="price"></div></div><div class="desc">BBQ sauce, bacon, and Mexican cheese — bold and smoky.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Pizza Fries</div><div class="price"></div></div><div class="desc">Sautéed onion &amp; peppers, pepperoni, and mozzarella.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Irish Nacho Fries</div><div class="price"></div></div><div class="desc">Waffle-cut potatoes with aged cheddar and ranch — served with salsa &amp; jalapeño slices.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Ranch Bacon Fries</div><div class="price"></div></div><div class="desc">Mozzarella, bacon, and ranch — creamy, salty, perfect.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Big Jim’s Fries</div><div class="price"></div></div><div class="desc">Fries smothered in Mexican cheese &amp; bacon, served with ranch.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Alfredo Fries</div><div class="price"></div></div><div class="desc">Alfredo sauce, bacon, and mozzarella — rich and addictive.</div></div>
+            </div>
+
+            <div style="height:12px"></div>
+            <div class="tiny"><b>French Fries</b></div>
+            <div class="menuGrid" style="margin-top:8px;">
+              <div class="menuItem"><div class="row"><div class="name">French Fries</div><div class="price"></div></div><div class="desc">Classic basket — hot, crispy, and salty.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Waffle Fries</div><div class="price"></div></div><div class="desc">Thick-cut, crunchy, and perfect for dipping.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Spicy Curly Fries</div><div class="price"></div></div><div class="desc">Seasoned curls with a little kick.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Nacho Fries</div><div class="price"></div></div><div class="desc">Nacho cheese &amp; bacon — simple, strong, and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Gravy Fries</div><div class="price"></div></div><div class="desc">Smothered in rich brown gravy.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Cheese Fries</div><div class="price"></div></div><div class="desc">Topped with aged cheddar cheese sauce.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Seasoned Fries</div><div class="price"></div></div><div class="desc">Your choice of dry seasoning for extra flavor.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Sweet Potato Fries</div><div class="price"></div></div><div class="desc">Sweet potato fries tossed in cinnamon sugar.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Crispy Coated Fries</div><div class="price"></div></div><div class="desc">Extra crispy — choose Cajun or Ranch seasoning.</div></div>
+            </div>
+
+            <div class="tiny" style="margin-top:10px;"><b>Mexican Night (Every Wednesday):</b> 3 Tacos (Hard or Soft) • Taco Pizza • Nacho Grande • Taco Fries</div>
+          </div>
+        </details>
+
+        <!-- BURGERS -->
+        <details>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Specialty Burgers</div>
+              <div class="sumHint">All burgers served with lettuce &amp; tomato — choice of fries or homemade chips.</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+            <div class="menuGrid">
+              <div class="menuItem"><div class="row"><div class="name">Southwest Burger</div><div class="price"></div></div><div class="desc">Bacon, BBQ sauce, onion &amp; cheddar cheese — finished with onion rings.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Bacon Bleu Burger</div><div class="price"></div></div><div class="desc">Bacon and bleu cheese for a bold, savory bite.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">A-1 Burger</div><div class="price"></div></div><div class="desc">Fried mushrooms, A-1 sauce, and Swiss cheese — rich and classic.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Blackened Cajun Burger</div><div class="price"></div></div><div class="desc">Banana peppers and Swiss with Cajun heat.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chili Cheese Burger</div><div class="price"></div></div><div class="desc">Topped with chili and nacho cheese — comfort on a bun.</div></div>
+
+              <div class="menuItem"><div class="row"><div class="name">Hamburger</div><div class="price"></div></div><div class="desc">Simple, juicy, and built like a classic.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Hamburger w/ Cheese</div><div class="price"></div></div><div class="desc">Classic burger finished with melty cheese.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Hamburger w/ Bacon &amp; Cheese</div><div class="price"></div></div><div class="desc">Smoky bacon + cheese — the “always works” combo.</div></div>
+            </div>
+          </div>
+        </details>
+
+        <!-- SALADS -->
+        <details>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Salads</div>
+              <div class="sumHint">Fresh options that still eat like a real meal.</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+            <div class="menuGrid">
+              <div class="menuItem"><div class="row"><div class="name">Tossed Salad</div><div class="price"></div></div><div class="desc">Crisp greens and classic toppings — clean and simple.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Filet Steak Salad</div><div class="price"></div></div><div class="desc">Steak on fresh greens — the “salad, but serious” pick.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fried Chicken Salad</div><div class="price"></div></div><div class="desc">Crispy chicken over greens for a satisfying crunch.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Grilled Chicken Salad</div><div class="price"></div></div><div class="desc">Grilled chicken on a fresh base — lighter but filling.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chef Salad</div><div class="price"></div></div><div class="desc">Classic deli-style salad built like a meal.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fish Salad</div><div class="price"></div></div><div class="desc">Fish served over fresh greens — clean, classic, and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fish Bites &amp; French Fries</div><div class="price"></div></div><div class="desc">Crispy fish bites with fries — simple comfort.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Trio Salad</div><div class="price"></div></div><div class="desc">Tuna salad, cottage cheese, and egg on a bed of lettuce.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Filet Steak, Fries &amp; Cheese Only</div><div class="price"></div></div><div class="desc">Straight to the point — steak + fries + cheese.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chicken, Fries &amp; Cheese Only</div><div class="price"></div></div><div class="desc">Chicken with fries and cheese — simple and satisfying.</div></div>
+            </div>
+          </div>
+        </details>
+
+        <!-- PIZZA -->
+        <details>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Pizza</div>
+              <div class="sumHint">Classic pies plus specialty builds (philly, taco, ranchero, alfredo).</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+            <div class="menuGrid">
+              <div class="menuItem"><div class="row"><div class="name">Plain Pizza</div><div class="price"></div></div><div class="desc">Classic cheese pie — simple, crispy, and always right.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Taco Pizza</div><div class="price"></div></div><div class="desc">Taco meat, cheese, lettuce, tomato, and taco sauce.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chicken Ranchero Pizza</div><div class="price"></div></div><div class="desc">Ranchero sauce, grilled chicken, and cheese.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chicken Alfredo Pizza</div><div class="price"></div></div><div class="desc">Alfredo sauce, grilled chicken, and cheese — rich and creamy.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Philly Steak Pizza</div><div class="price"></div></div><div class="desc">Steak, peppers, onions, cheese &amp; steak sauce — served with lettuce &amp; tomato.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Philly Chicken Pizza</div><div class="price"></div></div><div class="desc">Chicken, butter parm sauce, peppers, onions, cheese &amp; steak sauce — served with lettuce &amp; tomato.</div></div>
+            </div>
+
+            <div class="tiny" style="margin-top:10px;">
+              <b>Extra Toppings:</b> Pepperoni • Sausage • Banana Peppers • Green Peppers • Onions • Mushrooms • Cheese (each $0.50)
+            </div>
+          </div>
+        </details>
+
+        <!-- SANDWICHES / BUNS / PANINIS -->
+        <details>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Sandwiches, Buns &amp; Paninis</div>
+              <div class="sumHint">Home-style buns &amp; paninis served with chips — plus classic sandwiches.</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+
+            <div class="tiny"><b>Home Style Buns</b></div>
+            <div class="menuGrid" style="margin-top:8px;">
+              <div class="menuItem"><div class="row"><div class="name">Italian</div><div class="price"></div></div><div class="desc">Salami, ham, pepperoni, lettuce, tomato, and onion.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Darla’s Special</div><div class="price"></div></div><div class="desc">Steak, green peppers, onion, provolone, fries, lettuce, tomato &amp; special dressing.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Philly Steak</div><div class="price"></div></div><div class="desc">Steak with green peppers, onion, provolone, lettuce &amp; tomato.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Philly Chicken</div><div class="price"></div></div><div class="desc">Chicken with green peppers, onion, shredded mozzarella, lettuce &amp; tomato.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Steak, Egg &amp; Cheese</div><div class="price"></div></div><div class="desc">Steak and egg with American cheese, lettuce &amp; tomato.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Bacon, Egg &amp; Cheese</div><div class="price"></div></div><div class="desc">Bacon and egg with American cheese, lettuce &amp; tomato.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Meatball</div><div class="price"></div></div><div class="desc">Sauce and provolone — classic comfort on a bun.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Hot Sausage</div><div class="price"></div></div><div class="desc">Sauce, provolone, green peppers &amp; onion.</div></div>
+            </div>
+
+            <div style="height:12px"></div>
+            <div class="tiny"><b>Paninis</b></div>
+            <div class="menuGrid" style="margin-top:8px;">
+              <div class="menuItem"><div class="row"><div class="name">Ham &amp; Cheese Panini</div><div class="price"></div></div><div class="desc">Pressed hot — melty, simple, and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Turkey, Bacon &amp; Swiss Panini</div><div class="price"></div></div><div class="desc">Smoky bacon and Swiss for a rich bite.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Steak &amp; Cheese Panini</div><div class="price"></div></div><div class="desc">Steak and cheese pressed hot and crispy.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Grilled Chicken &amp; Cheese Panini</div><div class="price"></div></div><div class="desc">Grilled chicken with melty cheese — clean and filling.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fried Chicken &amp; Cheese Panini</div><div class="price"></div></div><div class="desc">Crispy chicken pressed hot — crunchy and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Italian Panini</div><div class="price"></div></div><div class="desc">Classic Italian meats pressed hot for extra flavor.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Meatball Panini</div><div class="price"></div></div><div class="desc">Saucy meatballs with cheese — pressed and melty.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Hot Sausage Panini</div><div class="price"></div></div><div class="desc">Sausage, sauce, and cheese — bold and hearty.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">All Vegetable Panini</div><div class="price"></div></div><div class="desc">A lighter press — warm, crisp, and flavorful.</div></div>
+            </div>
+
+            <div style="height:12px"></div>
+            <div class="tiny"><b>Sandwiches</b></div>
+            <div class="menuGrid" style="margin-top:8px;">
+              <div class="menuItem"><div class="row"><div class="name">Chicken Breast Sandwich (Grilled or Fried)</div><div class="price"></div></div><div class="desc">Pick your style — grilled for clean, fried for crispy.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chicken Breast (Parmesan Style)</div><div class="price"></div></div><div class="desc">Classic parm-style comfort, hot and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chicken Breast (Bacon Cheddar Style)</div><div class="price"></div></div><div class="desc">Bacon + cheddar — rich and built to hit.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chicken Breast (Bacon Ranch Style)</div><div class="price"></div></div><div class="desc">Creamy ranch finish with bacon bite.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Chicken Breast (Southwestern Style)</div><div class="price"></div></div><div class="desc">Bold flavor with a southwest kick.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Grilled Cheese</div><div class="price"></div></div><div class="desc">Hot, crispy, melty — pure comfort.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Grilled Cheese (w/ Bacon)</div><div class="price"></div></div><div class="desc">Classic grilled cheese upgraded with bacon.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Grilled Cheese (w/ Ham)</div><div class="price"></div></div><div class="desc">Ham + melty cheese — simple and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Egg Salad Sandwich</div><div class="price"></div></div><div class="desc">Creamy, classic deli-style comfort.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Tuna Salad Sandwich</div><div class="price"></div></div><div class="desc">Classic tuna salad — clean and filling.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">BLT</div><div class="price"></div></div><div class="desc">Bacon, lettuce, tomato — crisp and classic.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Jumbo Fish Sandwich (Fridays Only)</div><div class="price"></div></div><div class="desc">Big fish sandwich — Friday tradition.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Reuben Sandwich</div><div class="price"></div></div><div class="desc">Classic Reuben-style stack — rich and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Turkey, Bacon &amp; Ham Club</div><div class="price"></div></div><div class="desc">Triple threat — turkey, bacon, ham, stacked and filling.</div></div>
+
+              <div class="menuItem"><div class="row"><div class="name">Hot Roast Beef Sandwich</div><div class="price"></div></div><div class="desc">Hot roast beef served with mashed potatoes or fries &amp; gravy.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Hot Meatloaf Sandwich</div><div class="price"></div></div><div class="desc">Comfort classic served with mashed potatoes or fries &amp; gravy.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Hot Hamburger Sandwich</div><div class="price"></div></div><div class="desc">Hot hamburger served with mashed potatoes or fries &amp; gravy.</div></div>
+            </div>
+
+            <div class="tiny" style="margin-top:10px;">
+              <b>Extras:</b> Extra Gravy $0.50 • Extra Cheese $0.75 • Extra Dressing (SM $0.50 / LG $0.75)
+            </div>
+          </div>
+        </details>
+
+        <!-- DINNERS -->
+        <details>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Dinners</div>
+              <div class="sumHint">Hearty plates that feel like home — perfect when you want real food.</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+            <div class="menuGrid">
+              <div class="menuItem"><div class="row"><div class="name">Chicken Parmesan (w/ Spaghetti)</div><div class="price"></div></div><div class="desc">Classic chicken parm served over spaghetti — comfort done right.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Alfredo Pasta (w/ Chicken)</div><div class="price"></div></div><div class="desc">Creamy alfredo comfort with chicken.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Alfredo Pasta (w/ Shrimp)</div><div class="price"></div></div><div class="desc">Creamy alfredo finished with shrimp.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Lasagna</div><div class="price"></div></div><div class="desc">Classic baked comfort — rich and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Stuffed Shells</div><div class="price"></div></div><div class="desc">Baked shells with a cozy, classic finish.</div></div>
+
+              <div class="menuItem"><div class="row"><div class="name">Spaghetti &amp; Meatballs</div><div class="price"></div></div><div class="desc">Classic spaghetti with meatballs — simple and perfect.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Gnocchi</div><div class="price"></div></div><div class="desc">Soft, comforting gnocchi — a solid dinner pick.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Tortellini</div><div class="price"></div></div><div class="desc">Tortellini served hot and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Pot Roast Dinner</div><div class="price"></div></div><div class="desc">Served with mashed potatoes or fries &amp; vegetable — full comfort plate.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Beef Tips Over Noodles</div><div class="price"></div></div><div class="desc">Rich beef tips over noodles — warm and filling.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Pierogies</div><div class="price"></div></div><div class="desc">Classic pierogies — cozy and satisfying.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Fish Dinner (w/ Fries &amp; Coleslaw) — Fridays Only</div><div class="price"></div></div><div class="desc">Friday tradition — fish with fries and coleslaw.</div></div>
+            </div>
+          </div>
+        </details>
+
+        <!-- KIDS -->
+        <details>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Kids Menu (Age 12 &amp; Under)</div>
+              <div class="sumHint">All served with fries — simple, familiar, and kid-approved.</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+            <div class="menuGrid">
+              <div class="menuItem"><div class="row"><div class="name">Chicken Fingers</div><div class="price"></div></div><div class="desc">Crispy, simple, and always a win.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Corn Dog Bites</div><div class="price"></div></div><div class="desc">Sweet crunch outside, savory inside.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Spaghetti w/ Meatball</div><div class="price"></div></div><div class="desc">Classic spaghetti with one meatball.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Mini Pierogies</div><div class="price"></div></div><div class="desc">Bite-sized comfort.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Hamburger</div><div class="price"></div></div><div class="desc">Simple burger made just right.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Cheeseburger</div><div class="price"></div></div><div class="desc">Classic cheeseburger comfort.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Grilled Cheese</div><div class="price"></div></div><div class="desc">Warm, melty, and simple.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">Hot Dog</div><div class="price"></div></div><div class="desc">Classic hot dog — easy choice.</div></div>
+              <div class="menuItem"><div class="row"><div class="name">4 Wings</div><div class="price"></div></div><div class="desc">Wings for the little wing fan.</div></div>
+            </div>
+          </div>
+        </details>
+
+        <!-- WINGS FLAVORS -->
+        <details>
+          <summary>
+            <div class="sumLeft">
+              <div class="sumTitle">Wings Flavors</div>
+              <div class="sumHint">Bone-in or boneless wings — pick any flavor.</div>
+            </div>
+            <div class="chev" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+          </summary>
+          <div class="menuBody">
+            <div class="tiny">Pick your flavor — from classic buffalo to sweet heat.</div>
+
+            <div class="chipList">
+              <span class="chip">Hot</span><span class="chip">Mild</span><span class="chip">BBQ</span><span class="chip">Cajun</span><span class="chip">Butter Garlic</span><span class="chip">Honey Garlic</span>
+              <span class="chip">Honey BBQ</span><span class="chip">Honey Cajun</span><span class="chip">Honey Mustard</span><span class="chip">Taco</span><span class="chip">Hot Garlic</span>
+              <span class="chip">BBQ Garlic</span><span class="chip">Smokey BBQ</span><span class="chip">Hot, Sweet &amp; Sour</span><span class="chip">Ranch</span><span class="chip">Ranchero</span>
+              <span class="chip">Hickory Mesquite</span><span class="chip">Hot BBQ Garlic</span><span class="chip">Lemon Pepper</span><span class="chip">Wild Bills</span>
+              <span class="chip">Seasoned</span><span class="chip">Wing Dust</span><span class="chip">Louisiana Stickers</span><span class="chip">XXX Hot</span>
+              <span class="chip">Tara’s Teriyaki</span><span class="chip">Cheesy Cajun</span><span class="chip">Tex Mex</span><span class="chip">Hot BBQ</span>
+              <span class="chip">Caribbean Jerk</span><span class="chip">Chicken Parm</span><span class="chip">Garlic Parm</span><span class="chip">Garlic Pepper</span>
+              <span class="chip">Cheesy Salsa</span><span class="chip">Cheesy Garlic</span><span class="chip">Dry Ranch</span><span class="chip">Sweet &amp; Spicy</span>
+              <span class="chip">Cheesy Cajun Teriyaki</span><span class="chip">Hot-Honey BBQ</span><span class="chip">Sour Cream &amp; Onion</span>
+              <span class="chip">Mango Habanero</span><span class="chip">Roasted Honey Garlic</span><span class="chip">Cheesy Ranchero</span>
+              <span class="chip">Honey Mustard BBQ</span><span class="chip">Butter Bay</span><span class="chip">Dry Chipotle BBQ</span>
+              <span class="chip">Smokin’ Bourbon</span><span class="chip">Jamaica Jerk</span><span class="chip">Apple BBQ</span>
+              <span class="chip">Tropical Twist</span><span class="chip">Salt &amp; Vinegar</span><span class="chip">Dry Hickory</span>
+              <span class="chip">Dry Butter Garlic</span><span class="chip">Dry Smokey BBQ</span><span class="chip">Candy Pepper</span><span class="chip">Sweet-n-Tangy</span>
+            </div>
+
+            <div class="tiny" style="margin-top:10px;">
+              Want this to feel even more premium? We can add a “Heat Meter” next to the flavors (mild → insane) and a small “recommended pairings” section.
+            </div>
+          </div>
+        </details>
+
       </div>
 
       <div class="divider"></div>
@@ -359,7 +857,7 @@
         <h2>Events</h2>
         <div class="kv">
           <div><span>Friday</span><span>DJ Night • 10pm – Close</span></div>
-          <div><span>Saturday</span><span>Brunch + Day Party • 12pm – 4pm</span></div>
+          <div><span>Saturday</span><span>Day Party • 12pm – 4pm</span></div>
           <div><span>Sunday</span><span>Chill Set • 6pm – 10pm</span></div>
         </div>
         <p class="tiny">Want to host a birthday or private event? Request below.</p>
@@ -411,7 +909,7 @@
       <div class="divider"></div>
 
       <div class="panel">
-        <p class="tiny">© <span id="year"></span> Talerico's Bar &amp; Grille • Concept Site</p>
+        <p class="tiny">© <span id="year"></span> Talerico's Bar &amp; Grille • Premium Menu Site</p>
       </div>
 
     </div>
@@ -420,6 +918,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Keep your existing flow — update if you want a different Calendly
     const CALENDLY_URL = "https://calendly.com/mbayingana777/consultation";
 
     const GOOGLE_FORM_ACTION =
